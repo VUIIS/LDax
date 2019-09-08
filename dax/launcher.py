@@ -23,6 +23,7 @@ from .errors import (ClusterCountJobsException, ClusterLaunchException,
 
 #SHUNXING
 import json
+import shutil
 
 
 try:
@@ -230,7 +231,6 @@ name as a key and list of yaml filepaths as values.'
             LOGGER.info('Connecting to XNAT at %s' % self.xnat_host)
             with XnatUtils.get_interface(self.xnat_host, self.xnat_user,
                                          self.xnat_pass) as xnat:
-                print('sdaddsadas')
                 if not XnatUtils.has_dax_datatypes(xnat):
                     err = 'dax datatypes are not installed on xnat <%s>'
                     raise DaxXnatError(err % (self.xnat_host))
@@ -249,6 +249,7 @@ name as a key and list of yaml filepaths as values.'
                                   force_no_qsub=force_no_qsub)
 
         self.finish_script(flagfile, project_list, 3, 2, project_local)
+        
 
     @staticmethod
     def is_launchable_tasks(assr_info):
@@ -444,6 +445,7 @@ cluster queue"
                 LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
                 # cache is on when cacheFlag number is larger than 0
                 # here we just set it as 1
+                LOGGER.info('SHUNXING new cache feature')
                 tmpCacheFlag = 1
                 xnat._set_cacheFlag(tmpCacheFlag)
                 LOGGER.debug(xnat._get_cacheFlag())
@@ -478,9 +480,12 @@ cluster queue"
                     LOGGER.critical(err1 % project_id)
                     LOGGER.critical(err2 % (E.__class__, E.message))
                     LOGGER.critical(traceback.format_exc())
+            #clean cache folder
+            LOGGER.info('SHUNXING clean xnat cache folder')
+            xnat._set_cacheFlag(-1) # set cacheFlag to be default value = -1
+            shutil.rmtree(cachedir)
 
         self.finish_script(flagfile, project_list, 1, 2, project_local)
-        xnat._set_cacheFlag(-1)
 
     def build_project(self, xnat, project_id, lockfile_prefix, sessions_local,
                       mod_delta=None, lastrun=None):

@@ -117,12 +117,10 @@ def build(settings_path, logfile, debug, cachedir,projects=None, sessions=None,
     """
     # Logger for logs
     logger = set_logger(logfile, debug)
-    print('SHUNXING what the hack')
-    print(cachedir)
     _launcher_obj = read_settings(settings_path, logger, exe='build')
     lockfile_prefix = os.path.splitext(os.path.basename(settings_path))[0]
     try:
-        print('SHUNXING ################## cachedir is %s' % str(cachedir))
+        # SHUNXING add cachedir option to build function argument
         _launcher_obj.build(lockfile_prefix, cachedir, projects, sessions,
                             mod_delta=mod_delta, proj_lastrun=proj_lastrun)
     except KeyboardInterrupt:
