@@ -1,6 +1,7 @@
 This project aims to optimize dax build performance.
+------------------
 
-how to build a new dax env...
+Build and setup a new virtual enviroment for dax
 
 account: vuiisccidev
 ------------
