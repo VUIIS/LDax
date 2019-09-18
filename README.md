@@ -2,11 +2,35 @@ This project aims to optimize dax build performance.
 
 how to build a new dax env...
 
-pyxnat 
+account: vuiisccidev
+------------
 
-cachecontrol
+anaconda enviroment: /data/mcr/anaconda/dax/dax_new
+------------
 
-.pth to set path
+Migrate packages form old dax (/data/mcr/anaconda/dax/dax) to current environment: pip freeze > requirement.txt
 
-recon-stats re-install
+Note: in old dax's, two global ".pth" are defined:
+------------
+
+/data/mcr/anaconda/dax/dax/lib/python2.7/site-packages/masimatlab.pth
+
+and
+
+/data/mcr/anaconda/dax/dax/lib/python2.7/site-packages/dax.pth
+
+Please make sure these files are edited correctly in new virtual environment. 
+
+One more item: recon-stats has no available packages, need to manually re-install. 
+  
+dax_new path: /data/mcr/dax_new
+------------
+
+For better maintenance: we place following packages on local with version control.
+
+1. pyxnat: /data/mcr/dax_new_helper/pyxnat (https://github.com/MASILab/pyxnat, branch: vuiis_dax_build
+
+2. cachecontrol:/data/mcr/dax_new_helper/cachecontrol (https://github.com/MASILab/cachecontrol, branch: vuiis_dax_build)
+
+3. recon-stats v1.0 source package for re-install
 
