@@ -19,6 +19,9 @@ dax build new feature with cache on
 ------
 dax build --project Project_ID --sessions Session_ID --cachedir /tmp/vuiisccidev/.webcache/ Project_settings.py
 
+For vuiisccidev account -> use dax_manager, there is also an option '--cachedir' available.
+If cachedir is not defined when call dax_manager, launcher would retrieve cachedir path at /home/vuiisccidev/.dax_cachedir, which is /tmp/vuiisccidev/.xnatcache/
+
 Step to create a new virtual environment for dax
 --------
 
