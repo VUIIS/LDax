@@ -710,7 +710,7 @@ def get_interface(host=None, user=None, pwd=None):
     :return: InterfaceTemp object which extends functionaly of pyxnat.Interface
 
     """
-    LOGGER.warn('SHUNXING host:%s user:%s pwd:%s' % (str(host),str(user),str(pwd)))
+    #LOGGER.warn('SHUNXING host:%s user:%s pwd:%s' % (str(host),str(user),str(pwd)))
     return InterfaceTemp(host, user, pwd)
 
 
@@ -1380,7 +1380,7 @@ def get_full_object(intf, obj_dict):
                                scan=obj_dict['scan_id'])
     elif 'xsiType' in obj_dict and \
          obj_dict['xsiType'] in [DEFAULT_FS_DATATYPE, DEFAULT_DATATYPE]:
-        LOGGER.warn('SHUNXING get_full_object 2')
+        #LOGGER.warn('SHUNXING get_full_object 2')
         xpath = A_XPATH.format(project=obj_dict['project_id'],
                                subject=obj_dict['subject_id'],
                                session=obj_dict['session_id'],

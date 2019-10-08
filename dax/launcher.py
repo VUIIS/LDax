@@ -437,10 +437,21 @@ cluster queue"
                                         type_update=1, start_end=1)
 
         LOGGER.info('Connecting to XNAT at %s' % self.xnat_host)
+
+        #SHUNXING HACKING: Forcely set cachedir to /tmp/vuiisccidev/.xnatcache/
+        #cachedir = '/tmp/vuiisccidev/.xnatcache/';
+        if cachedir is None:
+            custom_cachedir_setting_path = '/home/vuiisccidev/.dax_cachedir'; 
+            if os.path.exists(custom_cachedir_setting_path):
+                with open(custom_cachedir_setting_path) as f:
+                        cachedir = f.readlines()
+                        print('#########%s' % cachedir);
+
         with XnatUtils.get_interface(self.xnat_host, self.xnat_user,
                                      self.xnat_pass) as xnat:
             # SHUNXING decide if cache should be used
             if cachedir is not None:
+                #sys.exit(1)
                 LOGGER.debug('SHUNXING cache is saved at:%s'% str(cachedir))
                 LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
                 # cache is on when cacheFlag number is larger than 0
