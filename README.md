@@ -1,70 +1,47 @@
-![](https://github.com/VUIIS/dax/blob/master/docs/images/dax_logo.png)
-Distributed Automation for XNAT
-===
+This project aims to optimize dax build performance.
+------------------
 
-# Install DAX
+Build and setup a new virtual environment for dax. Implement cache mechanism during dax build (only on in dax build). Optimized code to remove unnecessary slow & duplicate url query. 
 
-Install it with:
+Summary:
+------------
+username: vuiisccidev
 
-~~~~~~~~
-pip install dax
-~~~~~~~~
+anaconda environment: /data/mcr/anaconda/dax/dax_new
 
-Use --upgrade to overwrite previous installation
+activate virtual enviroment: source /data/mcr/dax_setup/dax_setup.sh
 
-To install current master:
-~~~~~~~~
-sudo apt-get install -y zlib1g-dev libxft-dev
-sudo apt-get install -y libjpeg-dev
-sudo apt-get install libxml2-dev libxslt1-dev
-sudo apt-get install libfreetype6-dev
-sudo apt-get install libffi-dev
-sudo apt-get install libssl-dev
-sudo apt-get install libatlas-base-dev gfortran
-pip install https://github.com/VUIIS/dax/archive/master.zip --upgrade
-~~~~~~~~
+dax_new path: /data/mcr/dax_new
 
-or in a docker:
-~~~~~~~~
-#
-# This sets up a base dax docker image
-#
-FROM ubuntu:14.04
-# Install updates, pip and dax
-RUN \
-apt-get update && \
-apt-get -y install python-pip libxft-dev && \
-apt-get -y install libxml2-dev libxslt1-dev python-dev zlib1g-dev && \
-apt-get -y install zlib1g-dev && \
-apt-get -y install libjpeg-dev && \
-apt-get -y install libxml2-dev libxslt1-dev && \
-apt-get -y install libfreetype6-dev && \
-apt-get -y install libffi-dev && \
-apt-get -y install libssl-dev && \
-apt-get -y install libatlas-base-dev gfortran git && \
-pip install https://github.com/VUIIS/dax/archive/master.zip --upgrade
+dax_new helper path: /data/mcr/dax_new_helper/. Place to store customized python packages. 
 
-#Set to bash
-CMD ["bash"]
-~~~~~~~~
+dax build new feature with cache on
+------
+dax build --project Project_ID --sessions Session_ID --cachedir /tmp/vuiisccidev/.webcache/ Project_settings.py
 
-or a specific branch:
+Step to create a new virtual environment for dax
+--------
 
-~~~~~~~~
-pip install https://github.com/VUIIS/dax/archive/branch_name.zip --upgrade
+Migrate packages form old dax (/data/mcr/anaconda/dax/dax) to current environment: pip freeze > requirement.txt
 
-pip install git+https://github.com/VUIIS/dax.git@branch_name --upgrade
-~~~~~~~~
+Note: in old dax's, two global ".pth" are defined:
 
-# WIKI
+/data/mcr/anaconda/dax/dax/lib/python2.7/site-packages/masimatlab.pth
 
-The wiki is accessible up top or by clicking [here](https://github.com/VUIIS/dax/wiki).
+and
 
-# Docs
-[![Documentation Status](https://readthedocs.org/projects/dax/badge/?version=master)](http://dax.readthedocs.org/en/master/?badge=master)
+/data/mcr/anaconda/dax/dax/lib/python2.7/site-packages/dax.pth
 
-# Build
-[![Build Status](http://masijenkins.vuse.vanderbilt.edu:8080/buildStatus/icon?job=Build_DAX)](http://masijenkins.vuse.vanderbilt.edu:8080/job/Build_DAX/)
+Please make sure these files are edited correctly in new virtual environment. 
 
-# Spiders
-All of our piplines are available on NITRC. [Come join our team!](https://www.nitrc.org/projects/masimatlab)
+One more item: recon-stats has no available packages, need to manually re-install. 
+  
+
+For better maintenance: we place following packages on local with version control.
+
+1. pyxnat: /data/mcr/dax_new_helper/pyxnat (https://github.com/MASILab/pyxnat, branch: vuiis_dax_build)
+
+2. cachecontrol:/data/mcr/dax_new_helper/cachecontrol (https://github.com/MASILab/cachecontrol, branch: vuiis_dax_build)
+
+3. recon-stats v1.0 source package for re-install
+
