@@ -469,9 +469,11 @@ def generate_settings(redcap_project, settings_info):
     LOGGER.info('Projects found on Redcap: ')
     if not settings_info:
         LOGGER.info('  - No project found')
-
     # Organize the data to in complex dictionaries:
     for project_settings in settings_info:
+        if project_settings[REDCAP_VAR['project']] != 'BLSA':
+            continue
+        print(project_settings[REDCAP_VAR['project']])
         user = project_settings[REDCAP_VAR['user']]
         gateway = project_settings[REDCAP_VAR['gateway']]
         mess = """  - {project} for settings {settings}"""
@@ -1209,10 +1211,11 @@ if __name__ == '__main__':
     LOGGER.info('Current Process Name: %s' % (os.path.basename(__file__)))
     LOGGER.info('Current User: %s' % (USER))
     if GATEWAY:
+        print(GATEWAY)
         LOGGER.info('Current Gateway/Computer: %s\n' % (GATEWAY))
     else:
         LOGGER.debug('Current Gateway/Computer: not found...\n')
-
+    print(API_KEY)
     # If api_key given, use the redcap db:
     if API_KEY:
         SETTINGS_PATHS, DAX_LOGS_DIRS_DICT, EMAIL_DICT, SETTINGS_INFO = \

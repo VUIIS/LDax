@@ -24,7 +24,7 @@ from .errors import (ClusterCountJobsException, ClusterLaunchException,
 #SHUNXING
 import json
 import shutil
-
+import uuid
 
 try:
     basestring
@@ -445,10 +445,13 @@ cluster queue"
             if os.path.exists(custom_cachedir_setting_path):
                 with open(custom_cachedir_setting_path) as f:
                         cachedir = f.readlines()
-                        print('#########%s' % cachedir);
+                        #print('#########%s' % cachedir);
+            cachedir = '/home/vuiisccidev/.xnatcache_%s/' % str(uuid.uuid1()) # forcely set cache here. Need to remove in future. - SHUNXING 10/12/2019
 
-        with XnatUtils.get_interface(self.xnat_host, self.xnat_user,
-                                     self.xnat_pass) as xnat:
+        #SHUNXING hack XnatUtils get_interface
+        # change it to get_interface_build_with_cache , pass cachedir argument
+        with XnatUtils.get_interface_build_with_cache(self.xnat_host, self.xnat_user,
+                                     self.xnat_pass,cachedir) as xnat:
             # SHUNXING decide if cache should be used
             if cachedir is not None:
                 #sys.exit(1)
@@ -494,7 +497,7 @@ cluster queue"
             #clean cache folder
             LOGGER.info('SHUNXING clean xnat cache folder')
             xnat._set_cacheFlag(-1) # set cacheFlag to be default value = -1
-            shutil.rmtree(cachedir)
+            shutil.rmtree(cachedir) # NEED TO ADD THIS LINE TO REMOVE CACHEDIR for safety. Need to add in future - SHUNXING 10/11/2019
 
         self.finish_script(flagfile, project_list, 1, 2, project_local)
 

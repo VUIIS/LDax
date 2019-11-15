@@ -205,9 +205,12 @@ class InterfaceTemp(Interface):
             if not self.pwd:
                 msg = 'Please provide password for host <%s> and user <%s>: '
                 self.pwd = getpass.getpass(msg % (self.host, self.user))
-        temp_dir = '/tmp/vuiisccidev/nicai/'
+        #print('#########################!!!!!!!!!!!!!!!!%s'%str(temp_dir))
+        #temp_dir = '/tmp/vuiisccidev/nicai/'
         #SHUNXING comment if not temp_dir:
         #SHUNXING comment    temp_dir = tempfile.mkdtemp()
+        if temp_dir is None:
+            temp_dir = '/tmp'
         if not os.path.exists(temp_dir):
             os.mkdir(temp_dir)
         self.temp_dir = temp_dir
@@ -712,6 +715,10 @@ def get_interface(host=None, user=None, pwd=None):
     """
     #LOGGER.warn('SHUNXING host:%s user:%s pwd:%s' % (str(host),str(user),str(pwd)))
     return InterfaceTemp(host, user, pwd)
+
+#SHUNXING HACK GET_INTERFACE -> input cachedir for dax build using cache
+def get_interface_build_with_cache(host=None, user=None, pwd=None, cachedir=None):
+    return InterfaceTemp(host, user, pwd, cachedir)
 
 
 def list_projects(intf):
