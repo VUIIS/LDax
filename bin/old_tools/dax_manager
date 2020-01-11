@@ -471,8 +471,8 @@ def generate_settings(redcap_project, settings_info):
         LOGGER.info('  - No project found')
     # Organize the data to in complex dictionaries:
     for project_settings in settings_info:
-        if project_settings[REDCAP_VAR['project']] != 'BLSA':
-            continue
+#        if project_settings[REDCAP_VAR['project']] != 'BLSA': - SHUNXING: for testing BLSA only
+#            continue
         print(project_settings[REDCAP_VAR['project']])
         user = project_settings[REDCAP_VAR['user']]
         gateway = project_settings[REDCAP_VAR['gateway']]
