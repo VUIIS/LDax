@@ -216,8 +216,9 @@ name as a key and list of yaml filepaths as values.'
 
         project_list = self.init_script(flagfile, project_local,
                                         type_update=3, start_end=1)
-
+        print('SHUNXING 1')
         if self.launcher_type in ['diskq-cluster', 'diskq-combined']:
+            print('SHUNXING 2')
             msg = 'Loading task queue from: %s'
             LOGGER.info(msg % os.path.join(res_dir, 'DISKQ'))
             task_list = load_task_queue(
@@ -598,7 +599,7 @@ cluster queue"
                 update_start_time = datetime.now()
 
             try:
-                LOGGER.warn('SHUNXING start building sessiong')
+                LOGGER.warn('SHUNXING start building session')
                 #LOGGER.warn('SHUNXING sess_info:%s, exp_procs:%s, scan_procs:%s, exp_mods:%s, scan_mods:%s' % (str(sess_info),str(exp_procs),str(scan_procs),str(exp_mods),str(scan_mods)))
                 self.build_session(xnat, sess_info, exp_procs, scan_procs,
                                    exp_mods, scan_mods)
@@ -1407,9 +1408,9 @@ def load_task_queue(status=None, proj_filter=None):
     task_list = list()
     diskq_dir = os.path.join(DAX_SETTINGS.get_results_dir(), 'DISKQ')
     results_dir = DAX_SETTINGS.get_results_dir()
-
     for t in os.listdir(os.path.join(diskq_dir, 'BATCH')):
         # TODO:complete filtering by project/subject/session/type
+        print('SHUNXING- print project:%s' % str(t))
         if proj_filter:
             assr = XnatUtils.AssessorHandler(t)
             if assr.get_project_id() not in proj_filter:

@@ -1155,6 +1155,9 @@ def upload_thread(xnat, index, assessor_label, number_of_processes):
     else:
         LOGGER.warn('     --> wrong label')
 
+    LOGGER.info('upload_thread:disconnecting xnat')
+    xnat.disconnect()
+
 def upload_pbs(xnat, projects):
     """
     Upload all pbs files to XNAT
