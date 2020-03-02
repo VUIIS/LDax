@@ -442,10 +442,10 @@ cluster queue"
         #SHUNXING HACKING: Forcely set cachedir to /tmp/vuiisccidev/.xnatcache/
         #cachedir = '/tmp/vuiisccidev/.xnatcache/';
         if cachedir is None:
-            custom_cachedir_setting_path = '/home/vuiisccidev/.dax_cachedir'; 
-            if os.path.exists(custom_cachedir_setting_path):
-                with open(custom_cachedir_setting_path) as f:
-                        cachedir = f.readlines()
+        #    custom_cachedir_setting_path = '/home/vuiisccidev/.dax_cachedir'; 
+        #    if os.path.exists(custom_cachedir_setting_path):
+        #        with open(custom_cachedir_setting_path) as f:
+        #                cachedir = f.readlines()
                         #print('#########%s' % cachedir);
         #    cachedir = '/home/vuiisccidev/.xnatcache/' # force to set cache here - need to remove in future - SHUNXING - 11/27/2019
             cachedir = '/home/vuiisccidev/.xnatcache_%s/' % str(uuid.uuid1()) # for random cachedir        
@@ -461,9 +461,9 @@ cluster queue"
                 # cache is on when cacheFlag number is larger than 0
                 # here we just set it as 1
                 LOGGER.info('SHUNXING new cache feature')
-                tmpCacheFlag = 1
+                tmpCacheFlag = 1 ##########################################################################################################################
                 xnat._set_cacheFlag(tmpCacheFlag)
-                LOGGER.debug(xnat._get_cacheFlag())
+                LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
 
             if not XnatUtils.has_dax_datatypes(xnat):
                 err = 'error: dax datatypes are not installed on xnat <%s>'
@@ -599,7 +599,8 @@ cluster queue"
                 update_start_time = datetime.now()
 
             try:
-                LOGGER.warn('SHUNXING start building session')
+                #LOGGER.warn('SHUNXING start building session')
+                #LOGGER.warn('SHUNXING budongle')
                 #LOGGER.warn('SHUNXING sess_info:%s, exp_procs:%s, scan_procs:%s, exp_mods:%s, scan_mods:%s' % (str(sess_info),str(exp_procs),str(scan_procs),str(exp_mods),str(scan_mods)))
                 self.build_session(xnat, sess_info, exp_procs, scan_procs,
                                    exp_mods, scan_mods)
@@ -665,11 +666,12 @@ cluster queue"
         while mod_count < 3:
             mess = """== Build modules (count:{count}) =="""
             LOGGER.debug(mess.format(count=mod_count))
+            LOGGER.warn('SHUNXING budongle2')
             # NOTE: we keep starting time to check if something changes below
             start_time = datetime.now()
             if sess_mod_list:
-                self.build_session_modules(xnat, csess, sess_mod_list)
                 #LOGGER.warn('SHUNXING Build modules this if 1?')
+                self.build_session_modules(xnat, csess, sess_mod_list)
             if scan_mod_list:
                 #LOGGER.warn('SHUNXING Build modules this if 2?')
                 for cscan in csess.scans():
@@ -812,7 +814,7 @@ setting assessor status'
             if sess_mod.needs_run(csess, xnat):
                 if sess_obj is None:
                     sess_obj = csess.full_object()
-                    #LOGGER.warn('SHUNXING sess_obj:%s' % str(sess_obj))
+                   # LOGGER.warn('SHUNXING sess_obj is None:%s' % str(sess_obj))
                 try:
                     sess_mod.run(sess_info, sess_obj)
                 except Exception as E:
@@ -931,8 +933,12 @@ setting assessor status'
             if scan_mod.needs_run(cscan, xnat):
                 if scan_obj is None:
                     scan_obj = XnatUtils.get_full_object(xnat, scan_info)
-
+                    #LOGGER.warn('SHUNXING from scan_modules scan_obj %s' % str(scan_obj))
                 try:
+                    #LOGGER.warn('SHUNXING from scan_modules scan_info 2 %s' % str(scan_info))
+                    #LOGGER.warn('SHUNXING from scan_modules scan_obj 2 %s' % str(scan_obj))
+                    #LOGGER.warn('SHUNXING type of scan_mod: %s' % str(type(scan_mod)))
+                    #LOGGER.warn('SHUNXING dir scan_mod: %s' % str(dir(scan_mod)))
                     scan_mod.run(scan_info, scan_obj)
                 except Exception as E:
                     err1 = 'Caught exception building session scan module \
@@ -1463,14 +1469,14 @@ def sess_was_modified(xnat, sess_info, build_start_time):
     # COMMENT END
    
     last_modified_xnat = sess_info.get('last_modified')
-    #LOGGER.warn('SHUNXING len of last_modified:%d' % len(last_modified_xnat) ) 
-    #LOGGER.warn('SHUNXING hack last_modified:%s' % str(last_modified_xnat) )
+    LOGGER.warn('SHUNXING len of last_modified:%d' % len(last_modified_xnat) ) 
+    LOGGER.warn('SHUNXING hack last_modified:%s' % str(last_modified_xnat) )
     last_mod = None
     if not len(last_modified_xnat) < 19:
         last_mod = datetime.strptime(last_modified_xnat[0:19], '%Y-%m-%d %H:%M:%S')
     else:
         #print('get last_modified value from sess_info failed')
-        #LOGGER.warn('SHUNXING get last_modified value from sess_info failed')
+        LOGGER.warn('SHUNXING get last_modified value from sess_info failed')
         last_mod = get_sess_lastmod(xnat, sess_info)
     #print('last_mod value :%s' % str(last_mod))
     #print('last_mod type:%s',str(type(last_mod)))
