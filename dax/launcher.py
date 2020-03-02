@@ -216,9 +216,9 @@ name as a key and list of yaml filepaths as values.'
 
         project_list = self.init_script(flagfile, project_local,
                                         type_update=3, start_end=1)
-        print('SHUNXING 1')
+        #print('SHUNXING 1')
         if self.launcher_type in ['diskq-cluster', 'diskq-combined']:
-            print('SHUNXING 2')
+            #print('SHUNXING 2')
             msg = 'Loading task queue from: %s'
             LOGGER.info(msg % os.path.join(res_dir, 'DISKQ'))
             task_list = load_task_queue(
@@ -599,8 +599,7 @@ cluster queue"
                 update_start_time = datetime.now()
 
             try:
-                #LOGGER.warn('SHUNXING start building session')
-                #LOGGER.warn('SHUNXING budongle')
+                LOGGER.warn('SHUNXING start building session')
                 #LOGGER.warn('SHUNXING sess_info:%s, exp_procs:%s, scan_procs:%s, exp_mods:%s, scan_mods:%s' % (str(sess_info),str(exp_procs),str(scan_procs),str(exp_mods),str(scan_mods)))
                 self.build_session(xnat, sess_info, exp_procs, scan_procs,
                                    exp_mods, scan_mods)
@@ -646,7 +645,7 @@ cluster queue"
         :param scan_mod_list: list of modules running on a scan
         :return: None
         """
-        #LOGGER.warn('SHUNXING build_session call XnatUtils.CachedImageSession')
+        LOGGER.warn('SHUNXING build_session call XnatUtils.CachedImageSession')
         #LOGGER.warn('SHUNXING build_session sess_info project_label:%s' %sess_info['project_label'])
         #LOGGER.warn('SHUNXING build_session sess_info subject_label:%s' %sess_info['subject_label'])
         #LOGGER.warn('SHUNXING build_session sess_info session_label:%s' %sess_info['session_label'])
@@ -666,7 +665,6 @@ cluster queue"
         while mod_count < 3:
             mess = """== Build modules (count:{count}) =="""
             LOGGER.debug(mess.format(count=mod_count))
-            LOGGER.warn('SHUNXING budongle2')
             # NOTE: we keep starting time to check if something changes below
             start_time = datetime.now()
             if sess_mod_list:
@@ -693,7 +691,7 @@ cluster queue"
             for cscan in csess.scans():
                 #LOGGER.warn('SHUNXING session_label:%s' % str(sess_info['session_label']))
                 LOGGER.debug('+SCAN: ' + cscan.info()['scan_id'])
-                #LOGGER.debug('type of cscan is: %s' % str(cscan))
+                LOGGER.debug('type of cscan is: %s' % str(cscan))
                 self.build_scan_processors(xnat, cscan, scan_proc_list)
 
         # Session Processors
@@ -867,7 +865,7 @@ setting assessor status'
                         xtask.update_status()
 
                     LOGGER.debug('building task:' + assr_name)
-                    #LOGGER.warn('SHUNXING build_scan_processors')
+                    LOGGER.warn('SHUNXING build_scan_processors')
 
                     #########SHUNXING same reason with build_session_processors
                     old_proc_status = None
@@ -1416,7 +1414,7 @@ def load_task_queue(status=None, proj_filter=None):
     results_dir = DAX_SETTINGS.get_results_dir()
     for t in os.listdir(os.path.join(diskq_dir, 'BATCH')):
         # TODO:complete filtering by project/subject/session/type
-        print('SHUNXING- print project:%s' % str(t))
+        #print('SHUNXING- print project:%s' % str(t))
         if proj_filter:
             assr = XnatUtils.AssessorHandler(t)
             if assr.get_project_id() not in proj_filter:
@@ -1469,14 +1467,14 @@ def sess_was_modified(xnat, sess_info, build_start_time):
     # COMMENT END
    
     last_modified_xnat = sess_info.get('last_modified')
-    LOGGER.warn('SHUNXING len of last_modified:%d' % len(last_modified_xnat) ) 
-    LOGGER.warn('SHUNXING hack last_modified:%s' % str(last_modified_xnat) )
+    #LOGGER.warn('SHUNXING len of last_modified:%d' % len(last_modified_xnat) ) 
+    #LOGGER.warn('SHUNXING hack last_modified:%s' % str(last_modified_xnat) )
     last_mod = None
     if not len(last_modified_xnat) < 19:
         last_mod = datetime.strptime(last_modified_xnat[0:19], '%Y-%m-%d %H:%M:%S')
     else:
         #print('get last_modified value from sess_info failed')
-        LOGGER.warn('SHUNXING get last_modified value from sess_info failed')
+        #LOGGER.warn('SHUNXING get last_modified value from sess_info failed')
         last_mod = get_sess_lastmod(xnat, sess_info)
     #print('last_mod value :%s' % str(last_mod))
     #print('last_mod type:%s',str(type(last_mod)))
