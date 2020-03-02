@@ -691,7 +691,7 @@ cluster queue"
             for cscan in csess.scans():
                 #LOGGER.warn('SHUNXING session_label:%s' % str(sess_info['session_label']))
                 LOGGER.debug('+SCAN: ' + cscan.info()['scan_id'])
-                LOGGER.debug('type of cscan is: %s' % str(cscan))
+                #LOGGER.debug('type of cscan is: %s' % str(cscan))
                 self.build_scan_processors(xnat, cscan, scan_proc_list)
 
         # Session Processors
