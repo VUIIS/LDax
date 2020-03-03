@@ -3,7 +3,7 @@ This project aims to optimize dax build performance.
 
 Build and setup a new virtual environment for dax. Implement cache mechanism during dax build (only on in dax build). Optimized code to remove unnecessary slow & duplicate url query. 
 
-Rename dax_new to LDax_v2 for Legacy Distributed Automation for Xnat version 2.0- 03/03/2020
+Rename dax_new to LDax_v2 for Legacy Distributed Automation for Xnat version 2.0 - 03/03/2020
 
 Summary:
 ------------
