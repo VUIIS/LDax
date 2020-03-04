@@ -48,5 +48,5 @@ For better maintenance: we place following packages on local with version contro
 
 2. cachecontrol:/data/mcr/dax_new_helper/cachecontrol (https://github.com/MASILab/cachecontrol, branch: vuiis_dax_build)
 
-3. recon-stats v1.0 source package for re-install https://github.com/sburns/recon-stats.git
+3. recon-stats v1.0 source package for re-install  pip install git+https://github.com/MASILab/recon-stats.git@ldax
 
