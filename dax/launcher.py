@@ -459,9 +459,10 @@ cluster queue"
                 LOGGER.debug('SHUNXING cache is saved at:%s'% str(cachedir))
                 LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
                 # cache is on when cacheFlag number is larger than 0
-                # here we just set it as 1
+                # here we just set it as -1
                 LOGGER.info('SHUNXING new cache feature')
-                tmpCacheFlag = 1 ##########################################################################################################################
+                LOGGER.info('SHUNXING temporarily turn off cache feature for debugging xnat2 timeout issue')
+                tmpCacheFlag = -1 ##########################################################################################################################
                 xnat._set_cacheFlag(tmpCacheFlag)
                 LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
 
