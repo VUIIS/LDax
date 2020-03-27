@@ -448,7 +448,8 @@ cluster queue"
         #                cachedir = f.readlines()
                         #print('#########%s' % cachedir);
         #    cachedir = '/home/vuiisccidev/.xnatcache/' # force to set cache here - need to remove in future - SHUNXING - 11/27/2019
-            cachedir = '/home/vuiisccidev/.xnatcache_%s/' % str(uuid.uuid1()) # for random cachedir        
+            tmp_home = os.path.expanduser('~')
+            cachedir = '%s/.xnatcache_%s/' % (tmp_home,str(uuid.uuid1())) # for random cachedir        
         #SHUNXING hack XnatUtils get_interface
         # change it to get_interface_build_with_cache , pass cachedir argument
         with XnatUtils.get_interface_build_with_cache(self.xnat_host, self.xnat_user,
