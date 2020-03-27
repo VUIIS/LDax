@@ -448,7 +448,8 @@ cluster queue"
         #                cachedir = f.readlines()
                         #print('#########%s' % cachedir);
         #    cachedir = '/home/vuiisccidev/.xnatcache/' # force to set cache here - need to remove in future - SHUNXING - 11/27/2019
-            cachedir = '/home/vuiisccidev/.xnatcache_%s/' % str(uuid.uuid1()) # for random cachedir        
+            tmp_home = os.path.expanduser('~')
+            cachedir = '%s/.xnatcache_%s/' % (tmp_home,str(uuid.uuid1())) # for random cachedir        
         #SHUNXING hack XnatUtils get_interface
         # change it to get_interface_build_with_cache , pass cachedir argument
         with XnatUtils.get_interface_build_with_cache(self.xnat_host, self.xnat_user,
@@ -459,9 +460,10 @@ cluster queue"
                 LOGGER.debug('SHUNXING cache is saved at:%s'% str(cachedir))
                 LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
                 # cache is on when cacheFlag number is larger than 0
-                # here we just set it as 1
+                # here we just set it as -1
                 LOGGER.info('SHUNXING new cache feature')
-                tmpCacheFlag = 1 ##########################################################################################################################
+                LOGGER.info('SHUNXING temporarily turn off cache feature for debugging xnat2 timeout issue')
+                tmpCacheFlag = -1 ##########################################################################################################################
                 xnat._set_cacheFlag(tmpCacheFlag)
                 LOGGER.debug('cacheflag = %d' % xnat._get_cacheFlag())
 
