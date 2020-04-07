@@ -364,8 +364,11 @@ cluster queue"
         if self.launcher_type in ['diskq-cluster', 'diskq-combined']:
             msg = 'Loading task queue from: %s'
             LOGGER.info(msg % os.path.join(res_dir, 'DISKQ'))
+            #Comment by SHUNXING, due to self.project_process_dict.keys will return [] for some projects (bug 1348)
+            #task_list = load_task_queue)
+            #    proj_filter=list(self.project_process_dict.keys()))
             task_list = load_task_queue(
-                proj_filter=list(self.project_process_dict.keys()))
+                proj_filter=list(self.project_process_dict.keys()+self.project_modules_dict.keys()))
 
             LOGGER.info('%s tasks found.' % str(len(task_list)))
 
