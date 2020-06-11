@@ -1,6 +1,6 @@
 Metadata-Version: 1.2
 Name: ldax
-Version: 0.7.4.2
+Version: 0.7.4.3
 Summary: Distributed Automation for XNAT
 Home-page: http://github.com/VUIIS/LDax
 Author: VUIIS CCI
@@ -8,7 +8,7 @@ Author-email: vuiis-cci@googlegroups.com
 Maintainer: VUIIS CCI
 Maintainer-email: vuiis-cci@googlegroups.com
 License: MIT
-Download-URL: https://github.com/onealbao/LDax/archive/0.7.4.2.tar.gz
+Download-URL: https://github.com/onealbao/LDax/archive/0.7.4.3.tar.gz
 Description: 
         ========================================================
         DAX: Distributed Automation for XNAT

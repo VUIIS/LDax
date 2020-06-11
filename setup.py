@@ -119,7 +119,10 @@ REQUIRES = [
     'pydicom',
     'httplib2',
     'future',
-    'configparser'
+    'configparser',
+    'cachecontrol @ git+https://github.com/VUIIS/cachecontrol.git@0.12.5.1#egg=cachecontrol',
+    'recon-stats @ git+https://github.com/VUIIS/recon-stats.git@0.0.3#egg=recon-stats',
+    'pyxnat @ git+https://github.com/VUIIS/pyxnat.git@1.0.0.0.3#egg=pyxnat'
 ]
 
 TESTS_REQUIRES = ['nose']
@@ -148,10 +151,6 @@ if __name__ == '__main__':
           test_suite='nose.collector',
           tests_require=TESTS_REQUIRES,
           install_requires=REQUIRES,
-          dependency_links=[
-              'cachecontrol @ git+https://github.com/VUIIS/cachecontrol.git@0.12.5.1#egg=cachecontrol',
-              'recon-stats @ git+https://github.com/VUIIS/recon-stats.git@0.0.3#egg=recon-stats',
-              'pyxnat @ git+https://github.com/VUIIS/pyxnat.git@1.0.0.0.3#egg=pyxnat'],
           zip_safe=True,
           scripts=glob(os.path.join('bin', '*', '*')),
           classifiers=CLASSIFIERS)
