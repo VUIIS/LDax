@@ -2,7 +2,6 @@ alabaster==0.7.12
 Babel==2.8.0
 backports.functools-lru-cache==1.6.1
 bz2file==0.98
-CacheControl==0.12.5.1
 certifi==2019.11.28
 chardet==3.0.4
 configparser==4.0.2
@@ -14,10 +13,10 @@ idna==2.9
 imagesize==1.2.0
 Jinja2==2.11.2
 kiwisolver==1.1.0
+ldax==0.7.4.2
 lxml==4.5.1
 MarkupSafe==1.1.1
 matplotlib==2.2.5
-msgpack==1.0.0
 nibabel==2.5.2
 numpy==1.16.6
 packaging==20.4
@@ -28,9 +27,7 @@ Pygments==2.5.2
 pyparsing==2.4.7
 python-dateutil==2.8.1
 pytz==2020.1
-pyxnat==1.0.0.0.3
 PyYAML==5.3.1
-recon-stats==0.0.3
 requests==2.23.0
 scipy==1.2.3
 semantic-version==2.3.1

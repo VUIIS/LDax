@@ -1,5 +1,6 @@
 MANIFEST.in
 README.rst
+setup.cfg
 setup.py
 bin/Xnat_tools/Redcapreport
 bin/Xnat_tools/XnatCheckLogin
