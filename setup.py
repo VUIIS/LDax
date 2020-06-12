@@ -69,7 +69,7 @@ MAINTAINER_EMAIL = 'vuiis-cci@googlegroups.com'
 DESCRIPTION = description
 LONG_DESCRIPTION = long_description
 URL = "http://github.com/VUIIS/LDax"
-DOWNLOAD_URL = "https://github.com/onealbao/LDax/archive/0.7.4.3.tar.gz"
+DOWNLOAD_URL = "https://github.com/onealbao/LDax/archive/0.7.4.3.2.tar.gz"
 LICENSE = 'MIT'
 CLASSIFIERS = [
     # As from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -119,10 +119,7 @@ REQUIRES = [
     'pydicom',
     'httplib2',
     'future',
-    'configparser',
-    'cachecontrol @ git+https://github.com/VUIIS/cachecontrol.git@0.12.5.1#egg=cachecontrol',
-    'recon-stats @ git+https://github.com/VUIIS/recon-stats.git@0.0.3#egg=recon-stats',
-    'pyxnat @ git+https://github.com/VUIIS/pyxnat.git@1.0.0.0.3#egg=pyxnat'
+    'configparser'
 ]
 
 TESTS_REQUIRES = ['nose']
@@ -151,10 +148,6 @@ if __name__ == '__main__':
           test_suite='nose.collector',
           tests_require=TESTS_REQUIRES,
           install_requires=REQUIRES,
-          dependency_links=[
-              'git+https://github.com/VUIIS/cachecontrol.git@0.12.5.1#egg=cachecontrol',
-              'git+https://github.com/VUIIS/recon-stats.git@0.0.3#egg=recon-stats',
-              'git+https://github.com/VUIIS/pyxnat.git@1.0.0.0.3#egg=pyxnat'],
           zip_safe=True,
           scripts=glob(os.path.join('bin', '*', '*')),
           classifiers=CLASSIFIERS)
