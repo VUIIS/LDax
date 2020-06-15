@@ -120,9 +120,9 @@ REQUIRES = [
     'httplib2',
     'future',
     'configparser',
-    'CacheControl-ldax'，
-    'pyxnat-ldax',
-    'recon-stats-ldax'
+    'cachecontrol @ git+https://github.com/VUIIS/cachecontrol.git@0.12.5.1#egg=cachecontrol',
+    'recon-stats @ git+https://github.com/VUIIS/recon-stats.git@0.0.3#egg=recon-stats',
+    'pyxnat @ git+https://github.com/VUIIS/pyxnat.git@1.0.0.0.3#egg=pyxnat'
 ]
 
 TESTS_REQUIRES = ['nose']

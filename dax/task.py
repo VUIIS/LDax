@@ -1,5 +1,6 @@
 """ Task object to generate / manage assessors and cluster."""
 """ Edit by Shunxing Bao for optimizing dax build 09/05/2019 """
+""" Edit build_commands function to solve open session issue in has_input() function 05/28/2020"""
 from builtins import str
 from builtins import object
 
@@ -1578,6 +1579,9 @@ undo_processing...')
         try:
             #LOGGER.warn('SHUNXING XnatTask.build_task 2')
             ######## edit by SHUNXING for hacking
+            # cmds = self.build_commands(csess, jobdir)
+            # The old_qc_status would be used in build_commands functions,
+            # There is no need to requery the xnat to get the qc_status
             cmds = self.build_commands(csess, jobdir)
             #LOGGER.warn('SHUNXING XnatTask.build_task 3')
             batch_file = self.batch_path()
@@ -1643,17 +1647,19 @@ undo_processing...')
             # Handle older processors without build_cmds()
             #LOGGER.warn('SHUNXING build_commands 3')
             ######### hack by SHUNXING
+            # has_inputs() cannot close session correctly. 
+            # The information can be extracted from old_qc_status 
             has_inputs, qcstatus = self.processor.has_inputs(cobj)
             #source_file_DF = inspect.getsourcefile(self.processor.has_inputs)
             #LOGGER.warn('SHUNXING source_file_DF for each assessor:%s' % str(source_file_DF))
- #           qcstatus = old_qc_status
- #           has_inputs = -2 # initialization
- #           if old_proc_status == 'NEED_TO_RUN':
- #               has_inputs == 1
- #           elif old_proc_status == "NEED_INPUTS":
- #               has_inputs == 0
- #           elif old_proc_status == "NO_DATA":
- #               has_inputs == -1       
+            #qcstatus = old_qc_status
+            #has_inputs = -2 # initialization
+            #if old_proc_status == 'NEED_TO_RUN':
+            #    has_inputs == 1
+            #elif old_proc_status == "NEED_INPUTS":
+            #    has_inputs == 0
+            #elif old_proc_status == "NO_DATA":
+            #    has_inputs == -1       
  #           LOGGER.warn('SHUNXING cobj:%s' % str(cobj))
             #LOGGER.warn('SHUNXING has_inputs:%s' % str(has_inputs))
             #LOGGER.warn('SHUNXING qcstatus: %s' % str(qcstatus))
