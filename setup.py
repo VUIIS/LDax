@@ -119,7 +119,10 @@ REQUIRES = [
     'pydicom',
     'httplib2',
     'future',
-    'configparser'
+    'configparser',
+    'CacheControl-ldax'，
+    'pyxnat-ldax',
+    'recon-stats-ldax'
 ]
 
 TESTS_REQUIRES = ['nose']
