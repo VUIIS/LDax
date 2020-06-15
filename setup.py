@@ -120,7 +120,7 @@ REQUIRES = [
     'httplib2',
     'future',
     'configparser',
-    'CacheControl-ldax'，
+    'CacheControl-ldax',
     'pyxnat-ldax',
     'recon-stats-ldax'
 ]
