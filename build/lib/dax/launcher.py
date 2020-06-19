@@ -452,7 +452,7 @@ cluster queue"
                         #print('#########%s' % cachedir);
         #    cachedir = '/home/vuiisccidev/.xnatcache/' # force to set cache here - need to remove in future - SHUNXING - 11/27/2019
             tmp_home = os.path.expanduser('~')
-            cachedir = '%s/.xnatcache_tmp/' % (tmp_home) # for random cachedir        
+            cachedir = '%s/.xnatcache_%s/' % (tmp_home,str(uuid.uuid1())) # for random cachedir        
         #SHUNXING hack XnatUtils get_interface
         # change it to get_interface_build_with_cache , pass cachedir argument
         with XnatUtils.get_interface_build_with_cache(self.xnat_host, self.xnat_user,
@@ -503,8 +503,6 @@ cluster queue"
             #clean cache folder
             LOGGER.info('SHUNXING clean xnat cache folder')
             xnat._set_cacheFlag(-1) # set cacheFlag to be default value = -1
-        
-        if cachedir is not None:
             shutil.rmtree(cachedir) # NEED TO ADD THIS LINE TO REMOVE CACHEDIR for safety. Need to add in future - SHUNXING 10/11/2019
 # - temporary remove this line for making build faster on individual session of BLSA - SHUNXING 11/27/2019
         self.finish_script(flagfile, project_list, 1, 2, project_local)
