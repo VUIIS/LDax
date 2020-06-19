@@ -1,1 +1,0 @@
-squeue -u vuiisccidev --noheader | wc -l

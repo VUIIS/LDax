@@ -1,1 +1,0 @@
-squeue -u masispiderdev --noheader | wc -l
