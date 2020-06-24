@@ -504,8 +504,8 @@ cluster queue"
             LOGGER.info('SHUNXING clean xnat cache folder')
             xnat._set_cacheFlag(-1) # set cacheFlag to be default value = -1
         
-        if cachedir is not None:
-            shutil.rmtree(cachedir) # NEED TO ADD THIS LINE TO REMOVE CACHEDIR for safety. Need to add in future - SHUNXING 10/11/2019
+#        if cachedir is not None: We don't need to delete the cachedir for now since we stop using it... And all ldax build 'point' to same cachedir. We just keep that tmp folder at home. The folder size should be always zero. 
+#            shutil.rmtree(cachedir) # NEED TO ADD THIS LINE TO REMOVE CACHEDIR for safety. Need to add in future - SHUNXING 10/11/2019
 # - temporary remove this line for making build faster on individual session of BLSA - SHUNXING 11/27/2019
         self.finish_script(flagfile, project_list, 1, 2, project_local)
 
