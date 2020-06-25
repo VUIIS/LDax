@@ -98,32 +98,8 @@ PLATFORMS = ["MacOs",
 VERSION = get_version()
 PROVIDES = ['niftypipe']
 
-# versions
-SPHINX_MIN_VERSION = '1.4'
-NIBABEL_MIN_VERSION = '2.0.1'
-NUMPY_MIN_VERSION = '1.6.2'
-MATPLOTLIB_MIN_VERSION = '1.4.3'
-
-
-REQUIRES = [
-    'Sphinx>=%s' % SPHINX_MIN_VERSION,
-    'nibabel>=%s' % NIBABEL_MIN_VERSION,
-    'numpy>=%s' % NUMPY_MIN_VERSION,
-    'matplotlib>=%s' % MATPLOTLIB_MIN_VERSION,
-    'pycap',
-    'pyyaml',
-    'scipy',
-    'lxml',
-    'xlrd',
-    'pillow',
-    'pydicom',
-    'httplib2',
-    'future',
-    'configparser',
-    'CacheControl-ldax',
-    'pyxnat-ldax',
-    'recon-stats-ldax'
-]
+with open('requirements.txt') as f:
+    REQUIRES = f.read().splitlines()
 
 TESTS_REQUIRES = ['nose']
 
