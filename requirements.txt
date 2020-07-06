@@ -42,7 +42,7 @@ Pygments==2.2.0
 pyparsing==2.2.0
 python-dateutil==2.6.1
 pytz==2017.3
-pyxnat-ldax==1.0.0.0.5
+pyxnat-ldax==1.0.0.0.7
 PyYAML==3.12
 recon-stats-ldax==0.0.4
 requests==2.18.4
