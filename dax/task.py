@@ -1376,7 +1376,9 @@ class ClusterTask(Task):
         dst = self.upload_outlog_dir()
         mkdirp(dst)
         LOGGER.debug('moving outlog file from %s to %s' % (src, dst))
-        shutil.move(src, dst)
+        if not os.path.exists(dst):
+            if os.path.exists(src):
+                shutil.move(src, dst)
 
         # Touch file for dax_upload to check
         create_flag(os.path.join(RESULTS_DIR, self.assessor_label,
@@ -1400,7 +1402,9 @@ class ClusterTask(Task):
         dst = self.upload_outlog_dir()
         mkdirp(dst)
         LOGGER.debug('moving outlog file from %s to %s' % (src, dst))
-        shutil.move(src, dst)
+        if not os.path.exists(dst):
+            if os.path.exists(src):
+                shutil.move(src, dst)
 
         # Touch file for dax_upload that job failed
         create_flag(os.path.join(RESULTS_DIR, self.assessor_label,
