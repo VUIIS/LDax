@@ -1,0 +1,13 @@
+-e .
+
+tox
+pytest-cov
+pytest
+mock
+cherrypy
+sphinx
+redis
+lockfile
+bumpversion
+twine
+black
