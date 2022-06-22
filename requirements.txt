@@ -26,7 +26,7 @@ MarkupSafe==1.1.1
 matplotlib==2.1.0
 msgpack==0.6.1
 nibabel==2.2.0
-numpy==1.13.3
+numpy==1.22.0
 olefile==0.44
 packaging==20.1
 pandas==0.21.0
